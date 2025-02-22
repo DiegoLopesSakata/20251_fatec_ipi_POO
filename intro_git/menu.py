@@ -33,3 +33,7 @@ def menu():
                 a, b = entradaValores()
                 print(calculadora.multiplicar(a, b))
                 print("\n")
+            case '4':
+                a, b = entradaValores()
+                print(calculadora.dividir(a, b))
+                print("\n")
