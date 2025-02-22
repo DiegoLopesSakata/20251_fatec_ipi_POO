@@ -29,3 +29,7 @@ def menu():
                 a, b = entradaValores()
                 print(calculadora.subtrair(a, b))
                 print("\n")
+            case '3':
+                a, b = entradaValores()
+                print(calculadora.multiplicar(a, b))
+                print("\n")
