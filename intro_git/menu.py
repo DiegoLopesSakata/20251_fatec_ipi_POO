@@ -44,4 +44,4 @@ def menu():
                 print("Opção desconhecida!")
                 print("\n")
 
-print("\n")
+menu()
