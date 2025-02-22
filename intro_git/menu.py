@@ -37,3 +37,6 @@ def menu():
                 a, b = entradaValores()
                 print(calculadora.dividir(a, b))
                 print("\n")
+            case '5':
+                print("Saindo...")
+                break
