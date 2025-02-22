@@ -25,3 +25,7 @@ def menu():
                 a, b = entradaValores()
                 print(calculadora.somar(a, b))
                 print("\n")
+            case '2':
+                a, b = entradaValores()
+                print(calculadora.subtrair(a, b))
+                print("\n")
