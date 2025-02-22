@@ -12,3 +12,16 @@ def menu():
     menu['3']="Multiplicar"
     menu['4']="Dividir"
     menu['5']="Sair do sistema"
+
+    while True:
+        options=sorted(menu.keys())
+
+        for entry in options:
+            print(entry, menu[entry])
+
+        selection=input("Por favor, selecione uma opcao: ")
+        match selection:
+            case '1':
+                a, b = entradaValores()
+                print(calculadora.somar(a, b))
+                print("\n")
