@@ -40,3 +40,8 @@ def menu():
             case '5':
                 print("Saindo...")
                 break
+            case _:
+                print("Opção desconhecida!")
+                print("\n")
+
+print("\n")
