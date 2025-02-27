@@ -6,7 +6,7 @@ public class SomaDoisNumeros{
         double a, b, resultado;
         //entrada de dados
         a = Double.parseDouble(JOptionPane.showInputDialog("Digite o primeiro valor:"));
-        b = Double.parseDouble(JOptionPane.showInputDialog("Digite o primeiro valor:"));
+        b = Double.parseDouble(JOptionPane.showInputDialog("Digite o segundo valor:"));
         //processamento
         resultado = a + b;
 
