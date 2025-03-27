@@ -1,12 +1,46 @@
-import javax.sound.midi.Soundbank;
+import java.util.Random;
 
 public class Personagem{
-    String nome;
-    int energia = 10;
-    int fome;
-    int sono;
+    private String nome = null;
+    private String [] possiveisNomes = {"Steve", "Alex", "Mark"};
+    private int energia;
+    private int fome;
+    private int sono;
 
-    void cacar(){
+    public Personagem(){
+        energia = 10;
+        fome = 0;
+        sono = 0;
+    }
+
+    private String obterNomeAleatorio(){
+        var gerador = new Random();
+        return possiveisNomes[gerador.nextInt(possiveisNomes.length)];
+        
+    }
+
+    //deve ser possivel construir um personagem com dados passados pela classe cliente
+    //se algum valor for inválido, usar aquele que é padrçao para a respectiva propriedade
+    // incluir a validação de nome: somente valem nomes que tenham pelo menos 4 caracteres
+    //se essa regra for violada, atribuir um nome aleatório
+    public Personagem(String nome, int energia, int fome, int sono){
+        this.nome = nome.length() >= 4 ? nome : obterNomeAleatorio();
+        this.energia = energia >= 0 && energia <= 10 ? energia : 10;
+        if(fome >= 0 && fome <=10){
+            this.fome = fome;
+        }
+        else{
+            this.fome = 0;
+        }
+        switch(sono){
+            case 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10:
+                this.sono = sono;
+                break;
+            default: this.sono = 0;
+        }
+    }
+
+    public void cacar(){
         if(energia >= 2){
             System.out.println(nome + " cacando");
             energia -= 2;
@@ -18,7 +52,7 @@ public class Personagem{
         sono = Math.min(sono + 1, 10);
     }
 
-    void comer(){
+    public void comer(){
         if(fome >= 1){
             System.out.println(nome + " comendo");
             fome--;
@@ -29,7 +63,7 @@ public class Personagem{
         }
     }
 
-    void dormir(){
+    public void dormir(){
         if(sono >= 1){
             System.out.println(nome + " dormindo");
             sono--;
