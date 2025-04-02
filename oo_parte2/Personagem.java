@@ -1,5 +1,3 @@
-import javax.sound.midi.Soundbank;
-
 public class Personagem{
     String nome;
     int energia = 10;
