@@ -1,38 +1,45 @@
 package colecoes;
 
-public class VetorDinamico {
+//generics(desde o java 5)
+//polimorfismo paramétrico
+public class VetorDinamico<T>{
     private static final int LIMIAR_INFERIOR = 4;
-    private int [] elementos;
+    private T [] elementos;
     private int quantidade;
     private int capacidade;
 
     VetorDinamico(){
         quantidade = 0;
         capacidade = LIMIAR_INFERIOR;
-        elementos = new int[capacidade];
+        //intuição
+        // elementos = new T [capacidade];
+        //realidade
+        elementos = (T[]) new Object[capacidade];
     }
 
     public boolean estaVazio(){
         return quantidade == 0;
     }
 
+    private void redimensionar(double fator){
+        //1. alocar um vetor com a capacidade apropriada
+        // int [] aux = new int[(int)(capacidade * fator)];
+        T [] aux = (T[]) new Object[(int)(capacidade * fator)];
+        //2. copiar todo mundo
+        for(int i = 0; i < quantidade; i++){
+            aux[i] = elementos[i];
+        }
+        //3. Ajustar a capacidade
+        capacidade = (int)(capacidade * fator);
+        //4. Ajustar a variavel elemento
+        elementos = aux;
+    }
+
     public void remover(){
         if(!estaVazio()){
             quantidade--;
-            if(capacidade > LIMIAR_INFERIOR && quantidade == capacidade / 4){
-                //1. alocar um novo vetor com metade do tamanho
-                //2. copiar todo mundo
-                //3. ajustar a capacidade
-                //4. ajustar a variavel elementos
-                
-                int [] aux = new int[capacidade / 2];
-                for(int i = 0; i < quantidade; i++){
-                    aux[i] = elementos[i];
-                }
-
-                elementos = aux;
-                capacidade /= 2;
-            }
+            if(capacidade > LIMIAR_INFERIOR && quantidade == capacidade / 4)
+                redimensionar(0.5);
         }
     }
 
@@ -40,23 +47,10 @@ public class VetorDinamico {
         return quantidade == capacidade;
     }
 
-    public void adicionar(int e){
+    public void adicionar(T e){
         //se esta cheio
-        if(estaCheio()){
-            //redimensionar
-            //1. Alocar um novo vetor com o dobro da capacidade
-            //2. Copiar todo mundo do elementos para o novo vetor
-            //3. Atualizar o vetor de capacidade
-            //4. Atualizar a variavel de referencia elementos, ela deve apontar par ao novo vetor
-
-            int [] aux = new int [capacidade * 2];
-            for(int i = 0; i < quantidade; i++){
-                aux[i] = elementos[i];
-            }
-            capacidade *= 2;
-            elementos = aux;
-
-        }
+        if(estaCheio())
+            redimensionar(2);
         elementos[quantidade++] = e;
     }
 
